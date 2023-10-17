@@ -130,3 +130,138 @@ int main(void) {
 	return 0;
 }
 ---------------------------------------------------------
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int idx_1(int i, int j)
+{
+    return i*3 + j;
+}
+void print2x3(int mat[6])
+{
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%d ", mat[i * 3 + j]);
+        }
+        printf("\n");
+    }
+}
+void idx_2(int i)
+{
+    int x, y;
+    x = i / 3;
+    y = i % 3;
+
+    printf("(%d, %d)", x, y);
+}
+int main(void) {
+    int matrix[6];
+    //matrix값 입력
+    scanf("%d %d %d", matrix + 0, matrix + 1, matrix + 2);
+    scanf("%d %d %d", matrix + 3, matrix + 4, matrix + 5);
+
+    printf("\nprint idx_1\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matrix[idx_1(i, j)]);
+        }
+    }
+    printf("\n");
+
+    printf("\nprint2x3\n");
+    print2x3(matrix);
+
+    printf("\nprint idx_2\n");
+    for (int i = 0; i < 6; i++) {
+        idx_2(i);
+        printf(" ");
+    }
+    printf("\n");
+
+    return 0;
+}
+-----------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void scan_matrix(int mat[512], int r, int c)
+{
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			scanf("%d", &mat[i * c + j]);
+		}
+	}
+}
+void print_matrix(int mat[512], int r, int c)
+{
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			printf("%d ", mat[i * c + j]);
+		}
+		printf("\n");
+	}
+}
+void find_2D(int mat[512], int r, int c, int mat1)
+{
+	printf("value %d is found at ", mat1);
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			if (mat1 == mat[i * c + j])
+			{
+				printf("(%d, %d) ",i,j);
+			}
+		}
+	}
+}
+int main(void) {
+	int r, c;
+	int matrix[512]; //matrix 아닌 다른 배열은 사용하지 못한다.
+	printf("matrix shape: ");
+	scanf("%d %d", &r, &c);
+
+	scan_matrix(matrix, r, c);// matrix 요소 값을 입력 받는 함수.
+
+	printf("----------\n");
+
+	print_matrix(matrix, r, c);
+
+	printf("----------\n");
+	find_2D(matrix, r, c, matrix[1]);//matrix[i] 요소 값을 가진 모든 요소의 2차원 index 출력.
+	return 0;
+}
+--------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int odd(int v)
+{
+    static count = 0;
+    if (v % 2 == 1)
+    {
+        count++;
+    }
+    return count;
+}
+
+int main(void) {
+    int s;
+    printf("입력할 수: ");
+    scanf("%d", &s);
+    int v, odd_numbers;
+    for (int i = 0; i < s; i++) {
+        scanf("%d", &v);
+        odd_numbers = odd(v);
+    }
+    printf("입력한 홀수의 수는 %d\n", odd_numbers);
+    return 0;
+}
+
+--------------------------------------------------
